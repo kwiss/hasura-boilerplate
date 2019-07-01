@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "hasura-node-knex",
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "description": "hasura nodejs server with knex migration and postgresql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  db:
+    build:
+      context: ./docker/postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_API_USER=api
+      - POSTGRES_API_USER_PASSWORD=test
+      - POSTGRES_READONLY_USER_NAME=readonly
+      - POSTGRES_READONLY_USER_PASSWORD=readonlyPassword
+    ports:
+      - "5434:5432"
+    volumes:
+      - hnk-pgdata:/var/lib/postgresql/data
+
+volumes:
+  hnk-pgdata:
