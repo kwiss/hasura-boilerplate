@@ -8,7 +8,6 @@ import * as jwtConfig from "../config/jwt";
 
 const knexConnection = Knex(connection);
 const { Model } = Objection;
-console.log(Model);
 Model.knex(knexConnection);
 
 class Role extends Model {
