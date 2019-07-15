@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "@hnk/api",
   "version": "1.0.0",
   "description": "koa passport jwt api",
   "main": "index.js",
