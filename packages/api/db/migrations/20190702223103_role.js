@@ -1,4 +1,5 @@
-exports.up = async function(knex, Promise) {
+// eslint-disable-next-line func-names
+exports.up = async function(knex) {
   await knex.schema.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
   return knex.schema.createTable("role", table => {
     table
@@ -13,6 +14,7 @@ exports.up = async function(knex, Promise) {
   });
 };
 
-exports.down = function(knex, Promise) {
+// eslint-disable-next-line func-names
+exports.down = function(knex) {
   return knex.schema.dropTable("role");
 };

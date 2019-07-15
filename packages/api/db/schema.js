@@ -1,9 +1,9 @@
-import { promisify } from "util";
 import Knex from "knex";
-import connection from "../knexfile";
 import Objection from "objection";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+
+import connection from "../knexfile";
 import * as jwtConfig from "../config/jwt";
 
 const knexConnection = Knex(connection);
@@ -89,7 +89,7 @@ class User extends Model {
   }
 
   async $beforeUpdate() {
-    await $beforeInsert();
+    await this.$beforeInsert();
   }
 
   verifyPassword(password, callback) {

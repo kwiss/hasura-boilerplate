@@ -23,7 +23,7 @@ router.get("/jwk", async ctx => {
     keys: [jwk]
   };
   ctx.set("Content-Type", "application/json");
-  ctx.response.body = JSON.stringify(jwks, null, 2) + "\n";
+  ctx.response.body = `${JSON.stringify(jwks, null, 2)}`;
 });
 
 const authenticate = (ctx, user, err, status, info) => {
@@ -37,6 +37,7 @@ const authenticate = (ctx, user, err, status, info) => {
     ctx.body = { success: true, user: user.getUser() };
     return ctx.login(user);
   }
+  return undefined;
 };
 
 /**
@@ -53,15 +54,15 @@ router.post("/login", async ctx => {
  * POST /signup
  * Create a new local account
  */
-router.post("/signup", async (ctx, next) => {
+router.post("/signup", async ctx => {
   try {
-    const user = await User.query()
+    const newUser = await User.query()
       .allowInsert("[username, password]")
       .insert({
         username: ctx.request.body.username,
         password: ctx.request.body.password
       });
-    if (user) {
+    if (newUser) {
       return passport.authenticate("local", (err, user, info, status) => {
         authenticate(ctx, user, err, status, info);
       })(ctx);
@@ -72,8 +73,8 @@ router.post("/signup", async (ctx, next) => {
     ctx.body = {
       error: err
     };
-    return;
   }
+  return undefined;
 });
 
 export default router;

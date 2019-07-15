@@ -9,6 +9,7 @@
     "dev": "nodemon --inspect --experimental-modules --es-module-specifier-resolution=node index.js"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.2",
     "bcryptjs": "^2.4.3",
     "fnv-plus": "^1.2.12",
     "jsonwebtoken": "^8.4.0",
@@ -29,7 +30,14 @@
     "pg-native": "^3.0.0",
     "pino": "^5.12.6",
     "rasha": "^1.2.5",
-    "util": "^0.12.1",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.18.2"
   }
 }

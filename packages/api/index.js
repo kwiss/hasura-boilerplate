@@ -1,11 +1,13 @@
 import Koa from "koa";
-import bodyParser from "koa-bodyparser";
-import passport from "./config/passport";
-import session from "koa-session";
 import RedisStore from "koa-redis";
+import bodyParser from "koa-bodyparser";
+import session from "koa-session";
+import pino from "pino";
 
+import passport from "./config/passport";
 import authRoutes from "./routes/auth";
 
+const logger = pino();
 const store = new RedisStore();
 const app = new Koa();
 const PORT = process.env.PORT || 1337;
@@ -26,5 +28,6 @@ app.use(authRoutes.routes());
 
 // server
 app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}`);
+  // eslint-disable-next-line no-console
+  logger.info(`Server listening on port: ${PORT}`);
 });

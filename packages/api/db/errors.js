@@ -1,9 +1,8 @@
-import objection from "objection";
 import objectionDbErrors from "objection-db-errors";
+import objection from "objection";
 
 const {
   DBError,
-  ConstraintViolationError,
   UniqueViolationError,
   NotNullViolationError,
   ForeignKeyViolationError,
@@ -116,4 +115,4 @@ function errorHandler(err, res) {
   }
 }
 
-export { errorHandler };
+export default errorHandler;

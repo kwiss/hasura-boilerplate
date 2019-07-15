@@ -1,13 +1,13 @@
-import pg from "pg";
+// import pg from "pg";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
 // hack for esm
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const DIR_NAME = dirname(fileURLToPath(import.meta.url));
 
 const databaseName = "hnk_dev";
 
-const connection_url = process.env.DATABASE_URL || {
+const connectionUrl = process.env.DATABASE_URL || {
   host: "localhost",
   user: "postgres",
   password: "test",
@@ -17,9 +17,9 @@ const connection_url = process.env.DATABASE_URL || {
 
 const connection = {
   client: "pg",
-  connection: connection_url,
+  connection: connectionUrl,
   migrations: {
-    directory: __dirname + "/db/migrations"
+    directory: `${DIR_NAME}/db/migrations`
   }
 };
 
