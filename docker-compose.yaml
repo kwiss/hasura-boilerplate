@@ -21,5 +21,16 @@ services:
     volumes:
       - hnk-pgdata:/var/lib/postgresql/data
 
+  graphql-engine:
+    image: hasura/graphql-engine:v1.0.0-beta.3
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:test@db:5432/hnk_dev
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+
 volumes:
   hnk-pgdata:
