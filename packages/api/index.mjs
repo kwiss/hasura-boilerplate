@@ -1,22 +1,30 @@
 import Koa from "koa";
 import Router from "koa-router";
 import bodyParser from "koa-bodyparser";
-import passport from "koa-passport";
+import passport from "./config/passport";
+import session from "koa-session";
+import RedisStore from "koa-redis";
+
 import * as userController from "./controllers/user";
+import authRoutes from "./routes/auth";
 
-const PORT = process.env.PORT || 4000;
-
+const store = new RedisStore();
 const app = new Koa();
-const router = new Router();
+const PORT = process.env.PORT || 1337;
 
+// sessions
+app.keys = ["super-secret-key"];
+app.use(session({ store }, app));
+
+// body parser
 app.use(bodyParser());
-app.use(passport.initialize());
-app.use(router.routes()).use(router.allowedMethods());
 
-router
-  .get("/jwks", userController.getJwks)
-  .post("/login", userController.postLogin)
-  .post("/signup", userController.postSignup);
+// authentication
+app.use(passport.initialize());
+// app.use(passport.session());
+
+// routes
+app.use(authRoutes.routes());
 
 // server
 app.listen(PORT, () => {

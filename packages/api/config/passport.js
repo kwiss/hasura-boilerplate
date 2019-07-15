@@ -3,6 +3,22 @@ import LocalStrategy from "passport-local";
 import BearerStrategy from "passport-http-bearer";
 import { User } from "../db/schema";
 
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  return User.query()
+    .where({ id })
+    .first()
+    .then(user => {
+      done(null, user);
+    })
+    .catch(err => {
+      done(err, null);
+    });
+});
+
 passport.use(
   new LocalStrategy(
     {
