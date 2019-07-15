@@ -11,6 +11,8 @@ cd hasura-node-knex
 # Install NPM dependencies
 yarn
 
+# Create your own .env file with given .env.sample
+
 # you sample keys or generate the RSA keys
 openssl genrsa -out private.pem 2048
 openssl rsa -in private.pem -pubout > public.pem
