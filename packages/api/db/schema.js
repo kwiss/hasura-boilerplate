@@ -2,9 +2,12 @@ import Knex from "knex";
 import Objection from "objection";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { createRequire } from "module";
 
-import connection from "../knexfile";
 import * as jwtConfig from "../config/jwt";
+
+const require = createRequire(import.meta.url);
+const connection = require("../knexfile");
 
 const knexConnection = Knex(connection);
 const { Model } = Objection;

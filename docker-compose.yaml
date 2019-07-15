@@ -2,20 +2,16 @@ version: "3"
 
 services:
   db:
-    build:
-      context: ./docker/postgres
+    image: postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 10
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=test
-      - POSTGRES_API_USER=api
-      - POSTGRES_API_USER_PASSWORD=test
-      - POSTGRES_READONLY_USER_NAME=readonly
-      - POSTGRES_READONLY_USER_PASSWORD=readonlyPassword
+      POSTGRES_DB: $POSTGRES_DB
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     ports:
       - "5434:5432"
     volumes:

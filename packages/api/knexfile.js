@@ -1,4 +1,6 @@
 const databaseName = "hnk_dev";
+const { join } = require("path");
+require("dotenv").config({ path: `${__dirname}/../../.env` });
 
 const connectionUrl = process.env.DATABASE_URL || {
   host: "localhost",
@@ -8,10 +10,12 @@ const connectionUrl = process.env.DATABASE_URL || {
   database: databaseName
 };
 
-module.exports = {
-  client: "pg",
+const connection = {
+  client: "postgresql",
   connection: connectionUrl,
   migrations: {
-    directory: `${__dirname}/db/migrations`
+    directory: join(__dirname, "db/migrations")
   }
 };
+
+module.exports = connection;

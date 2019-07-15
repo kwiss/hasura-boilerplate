@@ -7,11 +7,14 @@
   "type": "module",
   "scripts": {
     "lint": "eslint *.js",
+    "db:migrate:latest": "babel-node node_modules/.bin/knex migrate:latest",
     "dev": "nodemon --inspect --experimental-modules --es-module-specifier-resolution=node index.js"
   },
   "dependencies": {
+    "@babel/plugin-syntax-import-meta": "^7.2.0",
     "babel-eslint": "^10.0.2",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^8.0.0",
     "fnv-plus": "^1.2.12",
     "jsonwebtoken": "^8.4.0",
     "knex": "^0.18.3",
@@ -34,6 +37,8 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/node": "^7.5.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-config-prettier": "^6.0.0",
