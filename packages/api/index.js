@@ -1,11 +1,9 @@
 import Koa from "koa";
-import Router from "koa-router";
 import bodyParser from "koa-bodyparser";
 import passport from "./config/passport";
 import session from "koa-session";
 import RedisStore from "koa-redis";
 
-import * as userController from "./controllers/user";
 import authRoutes from "./routes/auth";
 
 const store = new RedisStore();

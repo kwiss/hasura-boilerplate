@@ -26,22 +26,26 @@ router.get("/jwk", async ctx => {
   ctx.response.body = JSON.stringify(jwks, null, 2) + "\n";
 });
 
+const authenticate = (ctx, user, err, status, info) => {
+  if (!user) {
+    logger.error(err, status, info);
+    ctx.status = 401;
+    ctx.body = {
+      error: err
+    };
+  } else {
+    ctx.body = { success: true, user: user.getUser() };
+    return ctx.login(user);
+  }
+};
+
 /**
  * POST /login
  * Sign in using username and password and returns JWT
  */
 router.post("/login", async ctx => {
   return passport.authenticate("local", (err, user, info, status) => {
-    if (!user) {
-      logger.error(err, status, info);
-      ctx.status = 401;
-      ctx.body = {
-        error: err
-      };
-    } else {
-      ctx.body = { success: true, user: user.getUser() };
-      return ctx.login(user);
-    }
+    authenticate(ctx, user, err, status, info);
   })(ctx);
 });
 
@@ -56,21 +60,12 @@ router.post("/signup", async (ctx, next) => {
       .insert({
         username: ctx.request.body.username,
         password: ctx.request.body.password
-      })
-      .then(() => {
-        return passport.authenticate("local", (err, user, info, status) => {
-          if (!user) {
-            logger.error(err, status, info);
-            ctx.status = 401;
-            ctx.body = {
-              error: err
-            };
-          } else {
-            ctx.body = { success: true, user: user.getUser() };
-            return ctx.login(user);
-          }
-        })(ctx);
       });
+    if (user) {
+      return passport.authenticate("local", (err, user, info, status) => {
+        authenticate(ctx, user, err, status, info);
+      })(ctx);
+    }
   } catch (err) {
     logger.error(err);
     ctx.status = 400;
