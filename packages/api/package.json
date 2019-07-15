@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --inspect --experimental-modules --es-module-specifier-resolution=node index.mjs"
+    "dev": "nodemon --inspect --experimental-modules --es-module-specifier-resolution=node index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
