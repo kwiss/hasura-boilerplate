@@ -5,11 +5,27 @@
   "workspaces": [
     "packages/*"
   ],
-  "description": "hasura nodejs server with knex migration and postgresql",
+  "description": "hasura nodejs server with knex migration, objection, postgresql and passport jwt handling hasura roles",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "lerna run dev --parallel",
+    "lint": "lerna run lint --parallel",
+    "install": "node node_modules/husky/lib/installer/bin install"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^3.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "dependencies": {
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "lerna": "^3.15.0"
+  }
 }

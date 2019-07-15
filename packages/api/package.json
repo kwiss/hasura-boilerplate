@@ -6,6 +6,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "lint": "eslint *.js",
     "dev": "nodemon --inspect --experimental-modules --es-module-specifier-resolution=node index.js"
   },
   "dependencies": {
