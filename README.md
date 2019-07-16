@@ -1,5 +1,5 @@
-# hasura-node-starter
-hasura blank app with passport jwt
+# hasura boilerplate app
+hasura boilerplate app with koa knex objection passport jwt
 
 ```
 # Clone the repo
