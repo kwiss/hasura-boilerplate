@@ -21,10 +21,11 @@ openssl rsa -in private.pem -pubout > public.pem
 
 docker-compose up
 
-# Then simply start your app
-yarn dev
-
 # Apply migrations
 # (Note) this step creates tables "users", "roles" and "user_roles" in the database
 yarn workspace @hnk/api db:migrate:latest
+
+# Then simply start your app
+yarn dev
+
 ```
