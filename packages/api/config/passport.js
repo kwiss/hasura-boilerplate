@@ -1,6 +1,5 @@
 import passport from "koa-passport";
 import LocalStrategy from "passport-local";
-import BearerStrategy from "passport-http-bearer";
 import { User } from "../db/schema";
 
 passport.serializeUser((user, done) => {
@@ -25,19 +24,19 @@ passport.use(
       usernameField: "username",
       passwordField: "password"
     },
-    function(username, password, done) {
+    (username, password, done) => {
       User.query()
         .where("username", username)
         .first()
         .eager("roles")
-        .then(function(user) {
+        .then(user => {
           if (!user) {
             return done("Unknown user");
           }
           if (!user.active) {
             return done("User is inactive");
           }
-          user.verifyPassword(password, function(err, passwordCorrect) {
+          user.verifyPassword(password, (err, passwordCorrect) => {
             if (err) {
               return done(err);
             }
@@ -46,8 +45,9 @@ passport.use(
             }
             return done(null, user);
           });
+          return done(null, false);
         })
-        .catch(function(err) {
+        .catch(err => {
           done(err);
         });
     }

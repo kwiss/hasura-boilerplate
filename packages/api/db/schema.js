@@ -67,8 +67,6 @@ class User extends Model {
       "x-hasura-allowed-roles": this.getRoles(),
       "x-hasura-default-role": "user",
       "x-hasura-user-id": `${this.id}`
-      // 'x-hasura-org-id': '123',
-      // 'x-hasura-custom': 'custom-value'
     };
   }
 
@@ -80,7 +78,6 @@ class User extends Model {
     };
     const claim = {
       name: this.username,
-      // iat: Math.floor(Date.now() / 1000),
       "https://hasura.io/jwt/claims": this.getHasuraClaims()
     };
     return jwt.sign(claim, jwtConfig.key, signOptions);

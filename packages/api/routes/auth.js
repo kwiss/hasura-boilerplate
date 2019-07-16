@@ -11,6 +11,7 @@ const logger = pino();
 const router = new Router();
 
 /**
+ * GET /jwk
  * Sends the JWT key set
  */
 router.get("/jwk", async ctx => {

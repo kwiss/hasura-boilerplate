@@ -11,7 +11,7 @@ const {
 } = objectionDbErrors;
 const { ValidationError, NotFoundError } = objection;
 
-// In this example `res` is an express response object.
+// In this example `ctx` is an express response object.
 function errorHandler(err, ctx) {
   if (err instanceof ValidationError) {
     switch (err.type) {

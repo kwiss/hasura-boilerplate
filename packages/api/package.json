@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "lint": "eslint *.js",
+    "lint": "eslint index.js knexfile.js db routes utils config",
     "db:migrate:latest": "babel-node node_modules/.bin/knex migrate:latest",
     "dev": "nodemon --inspect --experimental-modules --es-module-specifier-resolution=node index.js"
   },
