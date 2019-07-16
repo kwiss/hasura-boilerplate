@@ -26,5 +26,5 @@ yarn dev
 
 # Apply migrations
 # (Note) this step creates tables "users", "roles" and "user_roles" in the database
-yarn workspace knex migrate:latest
+yarn workspace @hnk/api db:migrate:latest
 ```
