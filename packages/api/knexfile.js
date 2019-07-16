@@ -1,11 +1,12 @@
-const databaseName = "hnk_dev";
 const { join } = require("path");
 require("dotenv").config({ path: `${__dirname}/../../.env` });
 
+const databaseName = process.env.POSTGRES_DB;
+
 const connectionUrl = process.env.DATABASE_URL || {
   host: "localhost",
-  user: "postgres",
-  password: "test",
+  user: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
   port: "5434",
   database: databaseName
 };
