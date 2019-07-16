@@ -2,6 +2,7 @@ import Router from "koa-router";
 import pino from "pino";
 import rasha from "rasha";
 
+import errorHandler from "../db/errors";
 import passport from "../config/passport";
 import { User } from "../db/schema";
 import * as jwtConfig from "../config/jwt";
@@ -68,7 +69,7 @@ router.post("/signup", async ctx => {
       })(ctx);
     }
   } catch (err) {
-    logger.error(err);
+    errorHandler(err, ctx);
     ctx.status = 400;
     ctx.body = {
       error: err
