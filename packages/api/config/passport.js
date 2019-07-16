@@ -29,6 +29,7 @@ passport.use(
         .where("username", username)
         .first()
         .eager("roles")
+        // eslint-disable-next-line consistent-return
         .then(user => {
           if (!user) {
             return done("Unknown user");
@@ -45,7 +46,6 @@ passport.use(
             }
             return done(null, user);
           });
-          return done(null, false);
         })
         .catch(err => {
           done(err);

@@ -58,25 +58,26 @@ router.post("/login", async ctx => {
  */
 router.post("/signup", async ctx => {
   try {
-    const newUser = await User.query()
+    await User.query()
       .allowInsert("[username, password]")
       .insert({
         username: ctx.request.body.username,
         password: ctx.request.body.password
+      })
+      .then(() => {
+        return passport.authenticate("local", (err, user, info, status) => {
+          authenticate(ctx, user, err, status, info);
+        })(ctx);
       });
-    if (newUser) {
-      return passport.authenticate("local", (err, user, info, status) => {
-        authenticate(ctx, user, err, status, info);
-      })(ctx);
-    }
   } catch (err) {
     errorHandler(err, ctx);
     ctx.status = 400;
     ctx.body = {
       error: err
     };
+    return err;
   }
-  return undefined;
+  return ctx;
 });
 
 export default router;
