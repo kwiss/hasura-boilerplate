@@ -6,7 +6,7 @@ hasura boilerplate app with koa knex objection passport jwt
 git clone https://github.com/kwiss/hasura-node-starter
 
 # Change directory
-cd hasura-node-knex
+cd hasura-node-starter
 
 # Install NPM dependencies
 yarn
