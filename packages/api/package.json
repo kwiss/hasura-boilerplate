@@ -17,7 +17,7 @@
     "dotenv": "^8.0.0",
     "fnv-plus": "^1.2.12",
     "jsonwebtoken": "^8.4.0",
-    "knex": "^0.18.3",
+    "knex": "^0.19.5",
     "koa": "^2.7.0",
     "koa-better-body": "^3.0.4",
     "koa-bodyparser": "^4.2.1",
