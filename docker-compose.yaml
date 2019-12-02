@@ -12,15 +12,11 @@ services:
       POSTGRES_DB: $POSTGRES_DB
       POSTGRES_USER: $POSTGRES_USER
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-    ports:
-      - "5434:5432"
     volumes:
       - hnk-pgdata:/var/lib/postgresql/data
 
   graphql-engine:
     image: hasura/graphql-engine:v1.0.0-beta.3
-    ports:
-      - 8080:8080
     depends_on:
       - db
     restart: always
