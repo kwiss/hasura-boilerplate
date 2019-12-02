@@ -23,6 +23,9 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
+  "engines": {
+    "node": ">=12"
+  },
   "dependencies": {
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.1.0",
