@@ -1,7 +1,7 @@
 # hasura boilerplate app
 hasura boilerplate app with koa knex objection passport jwt
 
-```
+```sh
 # Clone the repo
 git clone https://github.com/kwiss/hasura-node-starter
 
