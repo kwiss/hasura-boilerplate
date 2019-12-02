@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  db:
+    ports:
+      - "5434:5432"
+  graphql-engine:
+    ports:
+      - 8080:8080
